@@ -6,6 +6,9 @@
     <title>Vows & Tales | Digital Emotion Studio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,15 +16,32 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">
-                    <span>Vows & Tales</span>
-                </a>
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#features">Features</a>
-                    <a href="#why-us">Why Us</a>
-                    <a href="#contact">Contact</a>
-                </div>
+                <div class="nav-left">
+  <a href="#" class="logo">
+    <span>VOWS & TALES</span>
+  </a>
+</div>
+<div class="nav-right">
+  <div class="hamburger" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="nav-links desktop-nav">
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#why-us">Why Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- Mobile nav overlay (unchanged) -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <div class="close-btn" id="closeNav">&times;</div>
+  <a href="#about">About</a>
+  <a href="#features">Features</a>
+  <a href="#why-us">Why Us</a>
+  <a href="#contact">Contact</a>
+</div>
+
             </nav>
         </div>
     </header>
@@ -33,7 +53,7 @@
                 <div class="hero-text" data-scroll>
                     <h1>Turn Emotions into Digital Magic</h1>
                     <p>Vows & Tales transforms your special moments into beautiful, interactive digital experiences. No templates, just pure emotion crafted into a unique link you can share with anyone.</p>
-                    <a href="#contact" class="cta-button">Start Your Story</a>
+                    <a href="#contact" class="cta-button">Start Your Tale</a>
                 </div>
                 <div class="hero-image" data-scroll>
                     <img src="images/we.jpg" alt="Digital creation example">
@@ -56,7 +76,7 @@
                     <p>Each tale is crafted from scratch, infused with your personality and designed to create that "wow" moment when your special someone opens the link.</p>
                 </div>
                 <div class="about-image" data-scroll>
-                    <img src="images/us.jpg" alt="Team working">
+                    <img src="images/us.png" alt="Team working">
                     <div class="about-badge">Since 2025</div>
                 </div>
             </div>
@@ -188,7 +208,11 @@
                     <h4>Vows & Tales</h4>
                     <p>Transforming emotions into beautiful digital experiences that create lasting memories.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/vows.n.tales?igsh=N2txb21zbDh2ZDhz" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vowsandtales2025@gmail.com" class="social-link" target="_blank">
+  <i class="fa fa-envelope"></i>
+</a>
+
                     </div>
                 </div>
                 <div class="footer-column">
@@ -198,13 +222,6 @@
                         <li><a href="#features">Our Services</a></li>
                         <li><a href="#why-us">Why Choose Us</a></li>
                         <li><a href="#contact">Get Started</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact Info</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:awkshreay@gmail.com">awkshreay@gmail.com</a></li>
-                        <li>Bengaluru, India</li>
                     </ul>
                 </div>
             </div>
@@ -279,6 +296,31 @@
                 });
             });
         });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeNav = document.getElementById('closeNav');
+
+ hamburger.addEventListener('click', () => {
+  mobileNav.classList.add('active');
+  hamburger.style.display = 'none';
+  document.body.style.overflow = 'hidden';
+});
+
+
+closeNav.addEventListener('click', () => {
+  mobileNav.classList.remove('active');
+  hamburger.style.display = 'block';
+  document.body.style.overflow = 'auto';
+});
+
+  document.querySelectorAll('.mobile-nav-overlay a').forEach(link => {
+  link.addEventListener('click', () => {
+  mobileNav.classList.remove('active');
+  hamburger.style.display = 'block';
+  document.body.style.overflow = 'auto';
+});
+  });
     </script>
 </body>
 </html>
