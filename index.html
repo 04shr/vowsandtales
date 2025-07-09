@@ -238,9 +238,9 @@
         <select id="project-type" class="form-control" required>
             <option value="">Select an option</option>
             <option value="birthday">Birthday/Anniversary Surprise Page</option>
-            <option value="love-note">Love Note or Proposal Site</option>
+            <option value="love-note">Love-Post or Proposal Site</option>
             <option value="slambook">Digital Slambook</option>
-            <option value="presentation">Custom Presentation or Resume</option>
+            <option value="presentation">Customised games</option>
             <option value="other">Other (Specify in notes)</option>
         </select>
     </div>
@@ -321,21 +321,27 @@ document.getElementById('orderForm').addEventListener('submit', async function(e
         timestamp: new Date().toISOString()
     };
     
-    try {
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1500));
-               
-        // Show success message
-        successMessage.style.display = 'block';
-        successMessage.scrollIntoView({ behavior: 'smooth' });
-        
-        // Reset form
-        document.getElementById('orderForm').reset();
-        
-    } catch (error) {
-        console.error('Error:', error);
-        alert('There was an error submitting your request. Please try again.');
-    } finally {
+   try {
+    // Send form data to Netlify function
+    await fetch('/.netlify/functions/submitForm', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    });
+
+    // Show success message
+    successMessage.style.display = 'block';
+    successMessage.scrollIntoView({ behavior: 'smooth' });
+
+    // Reset form
+    document.getElementById('orderForm').reset();
+
+} catch (error) {
+    console.error('Error:', error);
+    alert('There was an error submitting your request. Please try again.');
+}finally {
         // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;

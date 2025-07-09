@@ -25,6 +25,8 @@ exports.handler = async function (event, context) {
       submittedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
+    
+
     return {
       statusCode: 200,
       body: JSON.stringify({ message: "Success" }),
